@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Acacia — All Miles Expiries</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0f1115;
+    color: #e6e6e6;
+    margin: 0;
+    padding: 32px;
+  }
+  h1 { font-size: 20px; margin-bottom: 4px; }
+  .subtitle { color: #9aa0a6; margin-bottom: 24px; }
+  .card {
+    background: #1a1d24;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #2a2e37;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #2a2e37; }
+  th { color: #9aa0a6; font-weight: 500; }
+  .empty { color: #6b7280; font-style: italic; padding: 12px 0; }
+  .back-link { color: #5b8def; text-decoration: none; font-size: 13px; }
+  .back-link:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+  <a href="/" class="back-link">&larr; Back to dashboard</a>
+  <h1 style="margin-top: 16px;">All miles / points expiries</h1>
+  <div class="subtitle">Every card with an expiry date, no time-window filter (cards that never expire aren't shown here either)</div>
+
+  <div class="card">
+    {% if miles_timeline %}
+      <table>
+        <thead>
+          <tr><th>Card</th><th>Program</th><th>Miles</th><th>Earned (statement period end)</th><th>Estimated expiry</th></tr>
+        </thead>
+        <tbody>
+          {% for entry in miles_timeline %}
+          <tr>
+            <td>{{ entry.card }}</td>
+            <td>{{ entry.program }}</td>
+            <td>{{ entry.miles }}</td>
+            <td>{{ entry.period_end }}</td>
+            <td>{{ entry.expiry_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="empty" style="margin-top: 12px;">
+        ⚠️ Estimates only — redemptions made outside this system aren't visible here.
+      </div>
+    {% else %}
+      <div class="empty">No statement data uploaded yet.</div>
+    {% endif %}
+  </div>
+</body>
+</html>

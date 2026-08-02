@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# dashboard (added stage 7, framework TBD)
+dashboard/node_modules/
+dashboard/.next/
+dashboard/dist/
+
+# local scratch
+*.log
